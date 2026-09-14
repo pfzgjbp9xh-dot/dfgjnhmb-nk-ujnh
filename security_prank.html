@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SECURITY ALERT</title>
+<style>
+html,body{margin:0;background:#050505;color:#ff3030;font-family:monospace;height:100%;overflow:hidden}
+body{display:flex;align-items:center;justify-content:center}
+.box{width:min(760px,90%);border:1px solid #ff3030;padding:28px;box-shadow:0 0 35px #500}
+h1{font-size:clamp(28px,6vw,54px);margin:0 0 15px;text-shadow:0 0 12px red}
+.warn{color:#ffb000}
+#log{height:210px;overflow:hidden;line-height:1.7;font-size:14px}
+.bar{height:16px;border:1px solid #ff3030;margin-top:15px}
+.fill{height:100%;width:0;background:#ff3030;box-shadow:0 0 15px red}
+#percent{margin-top:8px}
+#final{display:none;text-align:center;color:white;font-size:22px}
+button{background:#ff3030;color:#000;border:0;padding:12px 20px;font-weight:bold;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>⚠ SECURITY BREACH</h1>
+<div class="warn">UNAUTHORIZED ACCESS DETECTED</div>
+<div id="log"></div>
+<div class="bar"><div class="fill" id="fill"></div></div>
+<div id="percent">SYSTEM SCAN: 0%</div>
+<div id="final">
+  <p>😈 YOUR DEVICE IS TOTALLY FINE.</p>
+  <p style="color:#ff3030">YOU JUST GOT PRANKED 😂</p>
+  <button onclick="location.reload()">RUN IT AGAIN</button>
+</div>
+</div>
+<script>
+const lines=[
+"Connecting to secure server...",
+"Bypassing authentication...",
+"Scanning device...",
+"Checking local files...",
+"Accessing system information...",
+"Encrypting connection...",
+"Scanning contacts...",
+"Uploading data...",
+"Finalizing access..."
+];
+let i=0,p=0;
+const log=document.getElementById("log"),fill=document.getElementById("fill"),pct=document.getElementById("percent");
+const timer=setInterval(()=>{
+  if(i<lines.length){log.innerHTML += "> "+lines[i++]+"<br>";log.scrollTop=log.scrollHeight}
+  p=Math.min(100,p+Math.floor(Math.random()*12)+4);
+  fill.style.width=p+"%";pct.textContent="SYSTEM SCAN: "+p+"%";
+  if(p>=100){clearInterval(timer);setTimeout(()=>{log.style.display="none";pct.style.display="none";document.querySelector(".bar").style.display="none";document.getElementById("final").style.display="block"},700)}
+},500);
+</script>
+</body>
+</html>
